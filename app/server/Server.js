@@ -36,7 +36,6 @@ module.exports = async function Server(data, config, controllers) {
     }
 
     const wsServers = {}
-    const koa = new Koa()
 
     const router = new Router()
 
@@ -47,6 +46,7 @@ module.exports = async function Server(data, config, controllers) {
         }),
     )
 
+    const koa = new Koa()
     koa.use(cors())
     koa.use(router.routes())
     koa.use(router.allowedMethods())
