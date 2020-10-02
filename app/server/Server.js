@@ -88,7 +88,8 @@ module.exports = async function Server(data, config, controllers) {
     // https://github.com/apollographql/subscriptions-transport-ws/issues/199
     httpServer.on('upgrade', (request, socket, head) => {
         const pathname = url.parse(request.url).pathname
-        const wsServer = wsServers[pathname.substr(1, pathname.length - 1 - '/graphql'.length)]
+        const name = pathname.substr(1, pathname.length - 1 - '/graphql'.length)
+        const wsServer = wsServers[name]
         if (!wsServer) return socket.destroy()
         
         wsServer.wsServer.handleUpgrade(request, socket, head, function done(ws) {
