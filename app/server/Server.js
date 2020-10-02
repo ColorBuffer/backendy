@@ -36,16 +36,6 @@ module.exports = async function Server(data, config, controllers) {
     }
 
     const wsServers = {}
-
-    const router = new Router()
-
-    router.get(
-        '/storage/:folderName/:fileName',
-        Static(path.dirname(data.filer.getStorageDir()), {
-            maxage: 1000 * 60 * 60 * 24 * 90,
-        }),
-    )
-
     const middlewares = []
     for (const name of data.info.DATABASES) {
 
@@ -76,6 +66,15 @@ module.exports = async function Server(data, config, controllers) {
 
         wsServers[name] = SubscriptionServer.create({execute, subscribe, schema}, {noServer: true})
     }
+
+    const router = new Router()
+
+    router.get(
+        '/storage/:folderName/:fileName',
+        Static(path.dirname(data.filer.getStorageDir()), {
+            maxage: 1000 * 60 * 60 * 24 * 90,
+        }),
+    )
 
     const koa = new Koa()
     koa.use(cors())
