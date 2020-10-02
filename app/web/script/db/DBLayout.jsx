@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import {useQuery, gql} from 'nevisor-ui'
+import {useQuery, gql} from 'nevisor-api'
 import Data from './Data'
 import Api from './Api'
 import History from './History'

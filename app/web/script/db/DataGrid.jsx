@@ -2,7 +2,7 @@
 import React from 'react'
 
 import {ListReversed, List} from 'react-unified'
-import {useQuery, gql} from 'nevisor-ui'
+import {useQuery, gql} from 'nevisor-api'
 import Table from './table/Table'
 import Row from './table/Row'
 

@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import {useQuery, gql} from 'nevisor-ui'
+import {useQuery, gql} from 'nevisor-api'
 import TableIcon from '../components/icons/TableIcon'
 
 const QUERY = gql`
