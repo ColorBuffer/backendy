@@ -68,7 +68,6 @@ module.exports = async function Server(data, config, controllers) {
     }
 
     const router = new Router()
-
     router.get(
         '/storage/:folderName/:fileName',
         Static(path.dirname(data.filer.getStorageDir()), {
