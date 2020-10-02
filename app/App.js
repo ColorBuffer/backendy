@@ -42,10 +42,10 @@ module.exports = async function App(config) {
         ctx.respond = false
     })
 
-    koa.use(async (ctx, next) => {
-        ctx.res.statusCode = 200
-        await next()
-    })
+    // koa.use(async (ctx, next) => {
+    //     ctx.res.statusCode = 200
+    //     await next()
+    // })
 
     const koa = new Koa()
     koa.use(cors())
