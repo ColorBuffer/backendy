@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import {useSubscription, useQuery, useMutation} from 'nevisor-ui'
+import {useSubscription, useQuery, useMutation} from 'nevisor-api'
 import {gql} from 'nevisor-api'
 
 const QUERY_HISTORY = gql`
