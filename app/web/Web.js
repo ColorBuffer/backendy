@@ -1,9 +1,8 @@
 
 const Next   = require('next')
 const path   = require('path')
-const Server = require('./server/Server')
 
-module.exports = async function Web({dev, port}) {
+module.exports = async function Web({dev}) {
 
     const next = Next({
         dev,
@@ -14,5 +13,5 @@ module.exports = async function Web({dev, port}) {
 
     const handle = next.getRequestHandler()
 
-    Server({handle, port})
+    return handle
 }
