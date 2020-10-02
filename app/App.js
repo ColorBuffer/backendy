@@ -49,9 +49,9 @@ module.exports = async function App(config) {
 
     const koa = new Koa()
     koa.use(cors())
+    middlewares.forEach(middle => koa.use(middle))
     koa.use(router.routes())
     koa.use(router.allowedMethods())
-    middlewares.forEach(middle => koa.use(middle))
 
     const httpServer = HTTP.createServer(koa.callback())
     await new Promise(resolve => httpServer.listen(config.port, e => e ? reject(error) : resolve()))
