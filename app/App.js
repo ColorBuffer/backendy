@@ -19,6 +19,7 @@ module.exports = async function App(config) {
     const data = await Data(config.data, side)
     
     const {wsServers, middlewares} = await Server(data, config.server, config.controllers)
+    const web = Web(config.web)
 
     const router = new Router()
     router.get(
@@ -49,11 +50,6 @@ module.exports = async function App(config) {
             wsServer.wsServer.emit('connection', ws, request)
         })
     })
-
-    const web = Web(config.web)
-
-    const koa = new Koa()
-    const router = new Router()
 
     router.get(
         '/public',
