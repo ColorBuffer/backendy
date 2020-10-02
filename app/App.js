@@ -29,6 +29,24 @@ module.exports = async function App(config) {
         }),
     )
 
+    router.get(
+        '/public',
+        Static(__dirname + '/../public', {
+            maxage: 1000 * 60 * 60 * 24 * 90,
+        }),
+    )
+
+    router.all('(.*)', async (ctx) => {
+        console.log('Request', ctx.req.url)
+        await web(ctx.req, ctx.res)
+        ctx.respond = false
+    })
+
+    koa.use(async (ctx, next) => {
+        ctx.res.statusCode = 200
+        await next()
+    })
+
     const koa = new Koa()
     koa.use(cors())
     koa.use(router.routes())
@@ -49,30 +67,6 @@ module.exports = async function App(config) {
         wsServer.wsServer.handleUpgrade(request, socket, head, function done(ws) {
             wsServer.wsServer.emit('connection', ws, request)
         })
-    })
-
-    router.get(
-        '/public',
-        Static(__dirname + '/../public', {
-            maxage: 1000 * 60 * 60 * 24 * 90,
-        }),
-    )
-
-    router.all('(.*)', async (ctx) => {
-        console.log('Request', ctx.req.url)
-        await web(ctx.req, ctx.res)
-        ctx.respond = false
-    })
-
-    koa.use(async (ctx, next) => {
-        ctx.res.statusCode = 200
-        await next()
-    })
-
-    koa.use(router.routes())
-    koa.listen(config.port, (err) => {
-        if (err) throw err;
-        console.log(`> Ready on http://localhost:${config.port}`)
     })
 
 
