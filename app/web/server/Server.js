@@ -4,13 +4,11 @@ const Router = require('@koa/router')
 const Static = require('../../server/helpers/KoaStatic')
 const path    = require('path')
 
-module.exports = async function Server({next, port, ssl}) {
+module.exports = async function Server({handle, port}) {
 
     const koa = new Koa()
     const router = new Router()
 
-    const handle = next.getRequestHandler()
-    
     router.get(
         '/public',
         Static(__dirname + '/../public', {

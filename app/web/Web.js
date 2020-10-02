@@ -12,5 +12,7 @@ module.exports = async function Web({dev, port}) {
     
     await next.prepare()
 
-    Server({next, port, ssl: false})
+    const handle = next.getRequestHandler()
+
+    Server({handle, port})
 }
