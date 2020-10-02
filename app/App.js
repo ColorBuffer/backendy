@@ -19,7 +19,7 @@ module.exports = async function App(config) {
     const data = await Data(config.data, side)
     
     const {wsServers, middlewares} = await Server(data, config.server, config.controllers)
-    const web = Web(config.web)
+    const web = await Web(config.web)
 
     const router = new Router()
     router.get(
