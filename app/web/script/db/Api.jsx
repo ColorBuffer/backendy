@@ -21,7 +21,7 @@ export default function Api({
                     width: '100%',
                     height: '100%',
                 }}
-                src={`https://api.backendy.ir/${currentDatabase.name}`}
+                src={`/${currentDatabase.name}/graphql`}
             />
         </div>
     )
