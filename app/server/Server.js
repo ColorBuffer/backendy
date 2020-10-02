@@ -51,6 +51,7 @@ module.exports = async function Server(data, config, controllers) {
     koa.use(router.routes())
     koa.use(router.allowedMethods())
     
+    const middlewares = []
     for (const name of data.info.DATABASES) {
 
         const controller = getController(name)
@@ -69,7 +70,7 @@ module.exports = async function Server(data, config, controllers) {
             subscriptions: `/${name}/graphql`,
         })
 
-        koa.use(
+        middlewares.push(
             apolloServer.getMiddleware({
                 path: `/${name}/graphql`,
                 cors: {
@@ -80,6 +81,8 @@ module.exports = async function Server(data, config, controllers) {
 
         wsServers[name] = SubscriptionServer.create({execute, subscribe, schema}, {noServer: true})
     }
+
+    middlewares.forEach(middle => koa.use(middle))
 
     const httpServer = HTTP.createServer(koa.callback())
     await new Promise(resolve => httpServer.listen(config.port, e => e ? reject(error) : resolve()))
