@@ -14,7 +14,7 @@ import 'nevisor-ui-fonts/fonts/IRANSans/Farsi_numerals/webFonts/css/fontiran.css
 
 function createApolloClient(authToken, initialState) {
     return ApiClient({
-        uri: 'http://localhost:4000/backendy',
+        uri: 'http://localhost:4000/backendy/graphql',
         authToken,
         hasWS: process.browser,
         initialState,
