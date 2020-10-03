@@ -7,9 +7,9 @@ const DateTime = require('../utils/DateTime')
 const KnexConfig = require('./KnexConfig')
 
 const mysql = require('mysql2')
-const Gateway = require('../side/gateway/Gateway')
+const Gateway = require('../aside/gateway/Gateway')
 
-const KavenegarApi = require('../side/telephony/KavenegarApi')
+const KavenegarApi = require('../aside/telephony/KavenegarApi')
 const Filer = require('./Filer')
 const {merge} = require('../server/structure/helpers')
 const queryString = require('querystring')
@@ -36,7 +36,7 @@ function QueryHistory(pubSub, keepMS) {
     return {add}
 }
 
-module.exports = async function Data(config, side) {
+module.exports = async function Data(config, aside) {
 
     const pubSubs = {}
 
@@ -314,6 +314,6 @@ module.exports = async function Data(config, side) {
         filer,
         info,
         pubSubs,
-        side,
+        aside,
     }
 }

@@ -1,7 +1,7 @@
 
 const Data  = require('./data/Data')
 const Server = require('./server/Server')
-const Side = require('./side/Side')
+const Aside = require('./aside/Aside')
 const Web = require('./web/Web')
 
 const HTTP = require('http')
@@ -14,9 +14,9 @@ const Static = require('./server/helpers/KoaStatic')
 
 module.exports = async function App(config) {
 
-    const side = Side(config.side)
+    const aside = Aside(config.aside)
 
-    const data = await Data(config.data, side)
+    const data = await Data(config.data, aside)
     
     const {wsServers, middlewares} = await Server(data, config.server, config.controllers)
     const web = await Web(config.web)

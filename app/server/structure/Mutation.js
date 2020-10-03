@@ -32,7 +32,7 @@ module.exports = function Mutation(runOnMiddle, whereVariables, {databaseName, d
                 
                         const size = data.filer.sizeOfFile(path)
                         const thisPath = data.filer.pathOf('uploads', id)
-                        const {width, height} = await data.side.camera.getDimensionsOfImage(thisPath)
+                        const {width, height} = await data.aside.camera.getDimensionsOfImage(thisPath)
                         const file = await data.db.insertOne(
                             databaseName,
                             'file',

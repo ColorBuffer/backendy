@@ -204,7 +204,7 @@ module.exports = async function Structure(databaseName, data, controller) {
 
                         if (!await data.filer.exists(newFolder, newPathName)) {
                             const filePath = data.filer.pathOf(databaseName, obj.path_name)
-                            const stream = await data.side.camera.resizeImage(filePath, newWidth, newHeight)
+                            const stream = await data.aside.camera.resizeImage(filePath, newWidth, newHeight)
                             await data.filer.itNow(stream, {
                                 folder: newFolder,
                                 rename: newPathName,
@@ -230,7 +230,7 @@ module.exports = async function Structure(databaseName, data, controller) {
                         //     underProcessPlaceHolder[obj.id] = true;
                         //     (async () => {
                         //         const filePath = data.filer.pathOf('files', obj.path_name);
-                        //         const result = await data.side.camera.createSVGPlaceHolder(filePath);
+                        //         const result = await data.aside.camera.createSVGPlaceHolder(filePath);
         
                         //         await obj.update({
                         //             placeholder_base64: result.svg_base64encoded,
